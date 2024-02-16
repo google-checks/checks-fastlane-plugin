@@ -1,0 +1,151 @@
+lane :all do
+  dont_fail
+  fail_on_all
+
+  dont_generate_report
+  dont_wait_for_report
+
+  wrong_service_account
+  wrong_account_id
+  wrong_app_id
+  wrong_binary_path
+
+  severity_threshold_potential
+  severity_threshold_opportunity
+
+  missing_service_account
+  missing_account_id
+  missing_app_id
+  missing_binary_path
+end
+
+lane :dont_fail do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456", # valid account ID
+    app_id: "456123", # valid app ID
+    binary_path: "../app-release.apk"
+  )
+end
+
+lane :generate_report_is_false do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456",
+    app_id: "456123",
+    binary_path: "../app-release.apk",
+    generate_report: false
+  )
+end
+
+lane :fail_on_all do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456",
+    app_id: "456123",
+    binary_path: "../app-release.apk",
+    fail_on: "all"
+  )
+end
+
+lane :dont_wait_for_report do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456",
+    app_id: "456123",
+    binary_path: "../app-release.apk",
+    wait_for_report: false
+  )
+end
+
+lane :severity_threshold_potential do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456",
+    app_id: "456123",
+    binary_path: "../app-release.apk",
+    severity_threshold: "POTENTIAL"
+  )
+end
+
+lane :severity_threshold_opportunity do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456",
+    app_id: "456123",
+    binary_path: "../app-release.apk",
+    severity_threshold: "OPPORTUNITY"
+  )
+end
+
+lane :missing_service_account do
+  upload_to_checks(
+    # service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456",
+    app_id: "456123",
+    binary_path: "../app-release.apk"
+  )
+end
+
+lane :missing_account_id do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    # account_id: "123456",
+    app_id: "456123",
+    binary_path: "../app-release.apk"
+  )
+end
+
+lane :missing_app_id do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456",
+    # app_id: "456123",
+    binary_path: "../app-release.apk"
+  )
+end
+
+lane :missing_binary_path do
+  upload_to_checks(
+    # service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456",
+    app_id: "456123",
+    binary_path: "../app-release.apk"
+  )
+end
+
+lane :wrong_service_account do
+  upload_to_checks(
+    service_account_file_path: "../wrong-iam-checks-upload.json",
+    account_id: "123456",
+    app_id: "456123",
+    binary_path: "../app-release.apk"
+  )
+end
+
+lane :wrong_account_id do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    account_id: "111111111",
+    app_id: "456123",
+    binary_path: "../app-release.apk"
+  )
+end
+
+lane :wrong_app_id do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456",
+    app_id: "666666666",
+    binary_path: "../app-release.apk"
+  )
+end
+
+lane :wrong_binary_path do
+  upload_to_checks(
+    service_account_file_path: "../iam-checks-upload.json",
+    account_id: "123456",
+    app_id: "456123",
+    binary_path: "../wrong-app-release.apk"
+  )
+end
