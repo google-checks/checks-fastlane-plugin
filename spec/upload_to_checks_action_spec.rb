@@ -13,7 +13,7 @@
 # limitations under the License.
 
 require 'fastlane_core/ui/ui'
-require_relative './spec_helper'
+require_relative 'spec_helper'
 
 describe Fastlane::Actions::UploadToChecksAction do
   include SpecHelper
