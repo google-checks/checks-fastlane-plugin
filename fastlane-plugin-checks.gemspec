@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.author = ['Sherzat Aitbayev']
 
   spec.summary       = 'Fastlane plugin for Checks (checks.google.com)'
-  spec.homepage      = "https://github.com/google-checks/fastlane-plugin-checks"
+  spec.homepage      = "https://github.com/google-checks/checks-fastlane-plugin"
   spec.license       = "Apache-2.0"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
