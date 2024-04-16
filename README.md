@@ -1,8 +1,19 @@
-# checks plugin
+# Google Checks plugin for Fastlane
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-checks)
 
-## Getting Started
+This Fastlane plugin scans your mobile app using Google Checks to uncover compliance issues and data collection/sharing behaviors.
+
+Checks is a compliance platform from Google for mobile app developers that simplifies the path to privacy for development teams and the apps they’re building. Learn more at [checks.google.com](https://checks.google.com/).
+
+## Requirements
+
+- Create your Checks account. Request access at https://goo.gle/get-checks.
+- Your app to analyze is set up on Checks. For more info, read our [documention on connecting apps to Checks](https://developers.google.com/checks/guide/getting-started/connecting-apps).
+
+## Getting started
+
+Read our developer document at https://developers.google.com/checks/guide/ci-cd/fastlane for more information.
 
 This project is a [*fastlane*](https://github.com/fastlane/fastlane) plugin for
 [Checks](https://checks.google.com). To get started with
