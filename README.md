@@ -2,37 +2,68 @@
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-checks)
 
-This Fastlane plugin scans your mobile app using Google Checks to uncover compliance issues and data collection/sharing behaviors.
+The [Checks App Compliance fastlane
+plugin](https://goo.gle/checks-fastlane-plugin) is an seamless way to automate
+your iOS Checks analysis right from fastlane. This plugin lets you upload your
+app to Checks by adding an action into your `Fastfile`. For additional
+information about fastlane plugins, see the [fastlane
+documentation](https://docs.fastlane.tools/plugins/using-plugins/).
 
 Checks is a compliance platform from Google for mobile app developers that simplifies the path to privacy for development teams and the apps they’re building. Learn more at [checks.google.com](https://checks.google.com/).
 
 ## Requirements
 
-- Create your Checks account. Request access at https://goo.gle/get-checks.
-- Your app to analyze is set up on Checks. For more info, read our [documention on connecting apps to Checks](https://developers.google.com/checks/guide/getting-started/connecting-apps).
+To configure Checks to run in a pipeline, ensure you've fully onboarded and have retrieved key configuration inputs from
+your Checks account and Google Cloud project.
+
+### Create a Checks account and connect your app
+
+Follow the [Quickstart](https://developers.google.com/checks/guide/getting-started/quickstart) documentation to create a Checks account and connect your first app.
+
+### Target Checks account and app
+
+When you run Checks in your CI/CD platform, you will need to assign the results
+to a Checks account and an app that you've connected to that Checks account. To
+do this, you'll need the Checks **Account ID** and **App ID**.
+
+For your **Account ID**, visit your [Account Settings
+page](https://checks.google.com/console/settings/account).
+
+For your **App ID**, visit your [App Settings
+page](https://checks.google.com/console/settings/apps).
+
+### Authentication
+
+A **service account** should be used when using Checks in an automation setup,
+such as CI/CD. For more information on how to create and configure a service
+account, see [Authenticate the
+CLI](/checks/guide/cli/install-checks-cli#authenticate-service).
+
+It is recommended to use CI environment variables to configure your JSON key.
+For example:
+
+```
+CHECKS_CREDENTIALS=/my/path/to/serviceaccount.json
+```
 
 ## Getting started
 
-Read our developer document at https://developers.google.com/checks/guide/ci-cd/fastlane for more information.
+To add Checks to your fastlane configuration, run the following command from the
+root of your iOS project:
 
-This project is a [*fastlane*](https://github.com/fastlane/fastlane) plugin for
-[Checks](https://checks.google.com). To get started with
-`fastlane-plugin-checks`, add it to your project by running:
-
-```bash
+```posix-terminal
 fastlane add_plugin checks
 ```
 
-## About upload_to_checks
+Next, In a `./fastlane/Fastfile` lane, add a `upload_to_checks` block. The basic
+way to use `upload_to_checks` with the required parameters is:
 
-Minimum way to use upload_to_checks with the required parameters:
-
-```
+```ruby
 upload_to_checks(
   account_id: "<your Checks account ID>",
   app_id: "<your Checks app ID>",
   binary_path: "<path to your .apk/.aab/.ipa>",
-  service_account_file_path: "<path to your service account JSON>",
+  service_account_file_path: ENV["SERVICE_ACCOUNT_JSON"],
 )
 ```
 
@@ -45,18 +76,53 @@ Name                      | Type    | Default | Description
 service_account_file_path | string  | –       | Path to your serviceaccount.json file. Please refer to [Authenticate Google Checks](https://developers.google.com/checks/guide/integrate/cli/install-checks-cli#authenticate-service) with a service account to generate a service account.
 account_id                | string  | –       | Google Checks account ID from [Checks settings page](https://checks.area120.google.com/console/settings)
 app_id                    | string  | –       | Google Checks application ID
-binary_path               | string  | –       | path to the application binary file: .apk, .aab or .ipa
+binary_path               | string  | –       | Path to the application binary file: .apk, .aab or .ipa
 generate_report           | boolean | true    | If `false` the action won't upload and run the report for binary_path. It is useful to test your authentication and other paramaters.
 wait_for_report           | boolean | true    | If `false` the action won't wait for the report completion and the build will keep going.
-severity_threshold        | string  | –       | Valid values are: `PRIORITY` `POTENTIAL` `OPPORTUNITY`
+severity_threshold        | string  | –       | With this option, only vulnerabilities of the specified level or higher are reported. Valid values are: `PRIORITY` `POTENTIAL` `OPPORTUNITY`.
 fail_on                   | string  | –       | if `all` then action will fail if there are any failed checks following `severity_threshold` condition. It won't fail by default.
 operation_id              | string  | –       | For development and testing purposes. If an upload is already in progress, or you want to analyse an existing upload.
 
 ## Example
 
-Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this
-plugin. Try it by cloning the repo, running `fastlane install_plugins` and
-`bundle exec fastlane test`.
+By configuring the inputs to the Checks fastlane plugin, you can customize if
+the Checks analysis should run in the background or as part of your testing
+suite.
+
+### Upload each new release to Checks and run the analysis in the background
+
+```ruby
+platform :ios do
+  desc "My example app"
+  lane :distribute do
+    build_ios_app(...)
+    upload_to_checks(
+      account_id: "1234567890",
+      app_id: "1234567890",
+      binary_path: "./example-app.ipa",
+      service_account_file_path: ENV["SERVICE_ACCOUNT_JSON"],
+    )
+    distribute_ios_app(...)
+  end
+end
+```
+
+### Run Checks as part of your Fastlane testing suite
+
+```ruby
+desc "Checks App Compliance analysis"
+lane :test do |options|
+  upload_to_checks(
+    account_id: "1234567890",
+    app_id: "1234567890",
+    binary_path: "./example-app.ipa",
+    service_account_file_path: ENV["SERVICE_ACCOUNT_JSON"],
+    wait_for_report: true,
+    severity_threshold: "PRIORITY",
+    fail_on: "ALL",
+  )
+end
+```
 
 ## Run tests for this plugin
 
