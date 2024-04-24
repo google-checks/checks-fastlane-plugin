@@ -114,7 +114,7 @@ module Fastlane
 
       def self.details
         # Optional:
-        "upload to checks your mobile app"
+        "Upload your mobile app to Checks to run an App Compliance scan"
       end
 
       def self.available_options
