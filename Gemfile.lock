@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fastlane-plugin-checks (0.1.0)
+    fastlane-plugin-checks (0.2.0)
       faraday
       googleauth
       tty-spinner
