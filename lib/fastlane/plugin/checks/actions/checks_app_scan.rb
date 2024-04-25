@@ -26,7 +26,7 @@ require_relative '../options'
 module Fastlane
   UI = FastlaneCore::UI unless Fastlane.const_defined?(:UI)
   module Actions
-    class UploadToChecksAction < Action
+    class ChecksAppScanAction < Action
       def self.run(params) # rubocop:disable Metrics/PerceivedComplexity
         # required parameters
         service_account_file_path = params[:service_account_file_path]
@@ -101,7 +101,7 @@ module Fastlane
       end
 
       def self.description
-        "upload to checks"
+        "Checks App Compliance scan"
       end
 
       def self.authors
