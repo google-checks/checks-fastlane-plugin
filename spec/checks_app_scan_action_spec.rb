@@ -15,7 +15,7 @@
 require 'fastlane_core/ui/ui'
 require_relative 'spec_helper'
 
-describe Fastlane::Actions::UploadToChecksAction do
+describe Fastlane::Actions::ChecksAppScanAction do
   include SpecHelper
   describe '#run' do
     it "don't fail (default behavior)" do
