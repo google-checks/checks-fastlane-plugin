@@ -55,11 +55,11 @@ root of your iOS project:
 fastlane add_plugin checks
 ```
 
-Next, In a `./fastlane/Fastfile` lane, add a `upload_to_checks` block. The basic
-way to use `upload_to_checks` with the required parameters is:
+Next, In a `./fastlane/Fastfile` lane, add a `checks_app_scan` block. The basic
+way to use `checks_app_scan` with the required parameters is:
 
 ```ruby
-upload_to_checks(
+checks_app_scan(
   account_id: "<your Checks account ID>",
   app_id: "<your Checks app ID>",
   binary_path: "<path to your .apk/.aab/.ipa>",
@@ -96,7 +96,7 @@ platform :ios do
   desc "My example app"
   lane :distribute do
     build_ios_app(...)
-    upload_to_checks(
+    checks_app_scan(
       account_id: "1234567890",
       app_id: "1234567890",
       binary_path: "./example-app.ipa",
@@ -112,7 +112,7 @@ end
 ```ruby
 desc "Checks App Compliance analysis"
 lane :test do |options|
-  upload_to_checks(
+  checks_app_scan(
     account_id: "1234567890",
     app_id: "1234567890",
     binary_path: "./example-app.ipa",

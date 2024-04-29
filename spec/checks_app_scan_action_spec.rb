@@ -15,7 +15,7 @@
 require 'fastlane_core/ui/ui'
 require_relative 'spec_helper'
 
-describe Fastlane::Actions::UploadToChecksAction do
+describe Fastlane::Actions::ChecksAppScanAction do
   include SpecHelper
   describe '#run' do
     it "don't fail (default behavior)" do
@@ -27,7 +27,7 @@ describe Fastlane::Actions::UploadToChecksAction do
       expect(FastlaneCore::UI).not_to receive(:test_failure)
 
       Fastlane::FastFile.new.parse("lane :test do
-          upload_to_checks(
+          checks_app_scan(
             service_account_file_path: './iam.json',
             account_id: '1',
             app_id: '12',
@@ -50,7 +50,7 @@ describe Fastlane::Actions::UploadToChecksAction do
       expect(FastlaneCore::UI).to receive(:test_failure!)
 
       Fastlane::FastFile.new.parse("lane :test do
-          upload_to_checks(
+          checks_app_scan(
             service_account_file_path: './iam.json',
             account_id: '1',
             app_id: '12',
@@ -75,7 +75,7 @@ describe Fastlane::Actions::UploadToChecksAction do
       expect(FastlaneCore::UI).not_to receive(:test_failure!)
 
       Fastlane::FastFile.new.parse("lane :test do
-          upload_to_checks(
+          checks_app_scan(
             service_account_file_path: './iam.json',
             account_id: '1',
             app_id: '12',
@@ -102,7 +102,7 @@ describe Fastlane::Actions::UploadToChecksAction do
       expect(FastlaneCore::UI).not_to receive(:test_failure!)
 
       Fastlane::FastFile.new.parse("lane :test do
-          upload_to_checks(
+          checks_app_scan(
             service_account_file_path: './iam.json',
             account_id: '1',
             app_id: '12',
@@ -124,7 +124,7 @@ describe Fastlane::Actions::UploadToChecksAction do
       stubs = mock_http_server
 
       Fastlane::FastFile.new.parse("lane :test do
-          upload_to_checks(
+          checks_app_scan(
             service_account_file_path: './wrong-iam.json',
             account_id: '1',
             app_id: '12',
@@ -140,7 +140,7 @@ describe Fastlane::Actions::UploadToChecksAction do
 
       expect do
         Fastlane::FastFile.new.parse("lane :test do
-            upload_to_checks(
+            checks_app_scan(
               service_account_file_path: './iam.json',
               account_id: 'wrong-account-id',
               app_id: '12',
@@ -163,7 +163,7 @@ describe Fastlane::Actions::UploadToChecksAction do
 
       expect do
         Fastlane::FastFile.new.parse("lane :test do
-            upload_to_checks(
+            checks_app_scan(
               service_account_file_path: './iam.json',
               account_id: '1',
               app_id: 'wrong-app-id',
@@ -186,7 +186,7 @@ describe Fastlane::Actions::UploadToChecksAction do
       stubs = mock_http_server
 
       Fastlane::FastFile.new.parse("lane :test do
-          upload_to_checks(
+          checks_app_scan(
             service_account_file_path: './iam.json',
             account_id: '1',
             app_id: '12',
@@ -202,7 +202,7 @@ describe Fastlane::Actions::UploadToChecksAction do
 
       expect do
         Fastlane::FastFile.new.parse("lane :test do
-            upload_to_checks(
+            checks_app_scan(
               account_id: '1',
               app_id: '12',
               binary_path: './app-release.apk',
@@ -218,7 +218,7 @@ describe Fastlane::Actions::UploadToChecksAction do
 
       expect do
         Fastlane::FastFile.new.parse("lane :test do
-            upload_to_checks(
+            checks_app_scan(
               service_account_file_path: './iam.json',
               app_id: '12',
               binary_path: './app-release.apk',
@@ -234,7 +234,7 @@ describe Fastlane::Actions::UploadToChecksAction do
 
       expect do
         Fastlane::FastFile.new.parse("lane :test do
-            upload_to_checks(
+            checks_app_scan(
               service_account_file_path: './iam.json',
               account_id: '1',
               binary_path: './app-release.apk',
@@ -250,7 +250,7 @@ describe Fastlane::Actions::UploadToChecksAction do
 
       expect do
         Fastlane::FastFile.new.parse("lane :test do
-            upload_to_checks(
+            checks_app_scan(
               service_account_file_path: './iam.json',
               account_id: '1',
               app_id: '12',
@@ -265,7 +265,7 @@ describe Fastlane::Actions::UploadToChecksAction do
       stubs = mock_http_server
 
       Fastlane::FastFile.new.parse("lane :test do
-          upload_to_checks(
+          checks_app_scan(
             service_account_file_path: './iam.json',
             account_id: '1',
             app_id: '12',
@@ -287,7 +287,7 @@ describe Fastlane::Actions::UploadToChecksAction do
       stubs = mock_http_server
 
       Fastlane::FastFile.new.parse("lane :test do
-          upload_to_checks(
+          checks_app_scan(
             service_account_file_path: './iam.json',
             account_id: '1',
             app_id: '12',

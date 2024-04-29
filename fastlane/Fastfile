@@ -20,7 +20,7 @@ lane :all do
 end
 
 lane :dont_fail do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456", # valid account ID
     app_id: "456123", # valid app ID
@@ -29,7 +29,7 @@ lane :dont_fail do
 end
 
 lane :generate_report_is_false do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456",
     app_id: "456123",
@@ -39,7 +39,7 @@ lane :generate_report_is_false do
 end
 
 lane :fail_on_all do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456",
     app_id: "456123",
@@ -49,7 +49,7 @@ lane :fail_on_all do
 end
 
 lane :dont_wait_for_report do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456",
     app_id: "456123",
@@ -59,7 +59,7 @@ lane :dont_wait_for_report do
 end
 
 lane :severity_threshold_potential do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456",
     app_id: "456123",
@@ -69,7 +69,7 @@ lane :severity_threshold_potential do
 end
 
 lane :severity_threshold_opportunity do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456",
     app_id: "456123",
@@ -79,7 +79,7 @@ lane :severity_threshold_opportunity do
 end
 
 lane :missing_service_account do
-  upload_to_checks(
+  checks_app_scan(
     # service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456",
     app_id: "456123",
@@ -88,7 +88,7 @@ lane :missing_service_account do
 end
 
 lane :missing_account_id do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     # account_id: "123456",
     app_id: "456123",
@@ -97,7 +97,7 @@ lane :missing_account_id do
 end
 
 lane :missing_app_id do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456",
     # app_id: "456123",
@@ -106,7 +106,7 @@ lane :missing_app_id do
 end
 
 lane :missing_binary_path do
-  upload_to_checks(
+  checks_app_scan(
     # service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456",
     app_id: "456123",
@@ -115,7 +115,7 @@ lane :missing_binary_path do
 end
 
 lane :wrong_service_account do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../wrong-iam-checks-upload.json",
     account_id: "123456",
     app_id: "456123",
@@ -124,7 +124,7 @@ lane :wrong_service_account do
 end
 
 lane :wrong_account_id do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     account_id: "111111111",
     app_id: "456123",
@@ -133,7 +133,7 @@ lane :wrong_account_id do
 end
 
 lane :wrong_app_id do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456",
     app_id: "666666666",
@@ -142,7 +142,7 @@ lane :wrong_app_id do
 end
 
 lane :wrong_binary_path do
-  upload_to_checks(
+  checks_app_scan(
     service_account_file_path: "../iam-checks-upload.json",
     account_id: "123456",
     app_id: "456123",
