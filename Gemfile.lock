@@ -34,7 +34,6 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     babosa (1.0.4)
     claide (1.1.0)
-    coderay (1.1.3)
     colored (1.2)
     colored2 (3.1.2)
     commander (4.6.0)
@@ -166,7 +165,6 @@ GEM
     jmespath (1.6.2)
     json (2.7.1)
     jwt (2.7.1)
-    method_source (1.0.0)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     multi_json (1.15.0)
@@ -180,9 +178,6 @@ GEM
       ast (~> 2.4.1)
       racc
     plist (3.7.1)
-    pry (0.14.2)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
     public_suffix (5.0.4)
     racc (1.7.3)
     rainbow (3.1.1)
@@ -276,6 +271,7 @@ GEM
       xcpretty (~> 0.2, >= 0.0.7)
 
 PLATFORMS
+  arm64-darwin-23
   x86_64-darwin-22
   x86_64-darwin-23
   x86_64-linux
@@ -284,7 +280,6 @@ DEPENDENCIES
   bundler
   fastlane (>= 2.217.0)
   fastlane-plugin-checks!
-  pry
   rake
   rspec
   rspec_junit_formatter
