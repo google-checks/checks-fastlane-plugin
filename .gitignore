@@ -1,0 +1,14 @@
+*.gem
+.ruby-version
+
+## Documentation cache and generated files:
+/.yardoc/
+/_yardoc/
+/doc/
+/rdoc/
+fastlane/README.md
+fastlane/report.xml
+
+# Test results
+coverage
+test-results

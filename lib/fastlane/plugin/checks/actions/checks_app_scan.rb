@@ -16,7 +16,6 @@ require 'fastlane_core/ui/ui'
 require 'fastlane/action'
 require 'tty-spinner'
 require 'json'
-require 'pry'
 
 require_relative '../helper/credentials'
 require_relative '../helper/checks_service'
