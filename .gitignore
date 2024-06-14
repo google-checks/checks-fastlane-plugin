@@ -9,6 +9,10 @@
 fastlane/README.md
 fastlane/report.xml
 
+## Dependencies
+/vendor/
+/.bundle/
+
 # Test results
 coverage
 test-results
